@@ -9,17 +9,16 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "refresh_tokens", indexes = {
-        @Index(name = "idx_refresh_token_hash", columnList = "tokenHash"),
-        @Index(name = "idx_refresh_token_user", columnList = "user_id"),
-        @Index(name = "idx_refresh_token_expiry", columnList = "expiryDate")
+@Table(name = "password_reset_tokens", indexes = {
+        @Index(name = "idx_reset_token_hash", columnList = "token_hash"),
+        @Index(name = "idx_reset_user", columnList = "user_id")
 })
 @Getter
 @Setter(AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class RefreshToken {
+public class PasswordResetToken {
 
     @Id
     @UuidGenerator
@@ -38,13 +37,17 @@ public class RefreshToken {
 
     @Column(nullable = false)
     @Builder.Default
-    private boolean revoked = false;
+    private boolean used = false;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;
 
-    public void revoke() {
-        this.revoked = true;
+    public boolean isExpired() {
+        return Instant.now().isAfter(this.expiryDate);
+    }
+
+    public void markAsUsed() {
+        this.used = true;
     }
 }
