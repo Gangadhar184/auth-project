@@ -27,6 +27,8 @@ dependencies {
 	// Source: https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
 	implementation("com.nimbusds:nimbus-jose-jwt:10.9")
 	implementation 'org.bouncycastle:bcprov-jdk18on:1.77'
+	// Source: https://mvnrepository.com/artifact/org.mapstruct/mapstruct
+	implementation("org.mapstruct:mapstruct:1.6.3")
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
