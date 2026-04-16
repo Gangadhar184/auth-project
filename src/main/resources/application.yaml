@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: auth-project
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_projectt
+    username: postgres
+    password: root123
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 20000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+        jdbc:
+          batch_size: 20
+
+        order_insert: true
+        order_updates: true
+    show-sql: false
