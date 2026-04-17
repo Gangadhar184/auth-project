@@ -37,6 +37,27 @@ data:
         max-active: 10
         max-idle: 5
         min-idle: 2
+mail:
+  host: smtp.gmail.com
+  port: ${SMTP_PORT:587}
+  username: ${SMTP_USER}
+  password: ${SMTP_PASS}
+  protocol: smtp
+  tls: true
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 5000
+        writetimeout: 5000
+
+jackson:
+  serialization:
+    write-dates-as-timestamps: false
+  default-property-inclusion: non_null
 
 
 app:

@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.5'
+	id 'org.springframework.boot' version '3.5.13'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -26,9 +26,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	// Source: https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
 	implementation("com.nimbusds:nimbus-jose-jwt:10.9")
-	implementation 'org.bouncycastle:bcprov-jdk18on:1.77'
+	implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
 	// Source: https://mvnrepository.com/artifact/org.mapstruct/mapstruct
 	implementation("org.mapstruct:mapstruct:1.6.3")
+	implementation 'org.springframework.retry:spring-retry'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
