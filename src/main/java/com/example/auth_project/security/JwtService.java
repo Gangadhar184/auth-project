@@ -34,7 +34,7 @@ public class JwtService {
 
             JWTClaimsSet claims = new JWTClaimsSet.Builder()
                     .subject(email)
-                    .issuer("auth-service")
+                    .issuer("auth-project")
                     .issueTime(Date.from(now))
                     .expirationTime(Date.from(expiration))
                     .jwtID(UUID.randomUUID().toString())
