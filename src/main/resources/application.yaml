@@ -15,7 +15,7 @@ spring:
       connection-timeout: 20000
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -26,3 +26,39 @@ spring:
         order_insert: true
         order_updates: true
     show-sql: false
+
+app:
+  security:
+    jwt:
+      access-token-expiration: ${JWT_ACCESS_EXP:900000}
+      refresh-token-expiration: ${JWT_REFRESH_EXP:604800000}
+      key-store-path: ${JWT_KEYSTORE_PATH}
+      key-store-password: ${JWT_KEYSTORE_PASSWORD}
+      key-alias: ${JWT_KEY_ALIAS:auth-key}
+      kid: ${JWT_KID:v1}
+    argon2:
+      memory: 65536
+      iterations: 3
+      parallelism: 4
+      salt-length: 16
+      hash-length: 32
+    rate-limiting:
+      login-max-attempts: 5
+      login-window-seconds: 300
+      password-reset-max: 3
+      password-rest-window: 3600
+    brute-force:
+      max-failures: 5
+      lockout-duration-minutes: 30
+    verification:
+      token-expiry-hours: 24
+    password-reset:
+      token-expiry-minutes: 30
+
+logging:
+  level:
+    root: INFO
+    com.example.auth_project: DEBUG
+    org.springframework.security: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
